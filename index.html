@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Shahin-Bank</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <div id="bank" class="bank-aria">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center">Welcome to Shahin-Bank</h1>
+                    <div class="login-aria">
+                        <h4>Login</h4>
+                      
+                            <input class="form-control" type="email" name="" id="" placeholder="Enter Email">
+                            <br>
+                            <input class="form-control" type="password" name="" id="" placeholder="Enter your password">
+                            <br>
+                            <button id="login" class="btn btn-success">Enter</button>
+                   
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+      <div id="transection">
+           <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="deposit">
+                      <h4>Deposit</h4>
+                      <h3>$<span id="currentDeposit">000</span></h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="withdraw">
+                    <h4>Withdraw</h4>
+                    <h3>$ <span id="currentWithdraw">000</span> </h3>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="balance">
+                    <h4>Balance</h4>
+                    <h3>$ <span id="currentBalance">1000</span></h3>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                  <div class="col-md-4">
+                      <div class="dep">
+                          <h5>Deposit</h5>
+                          <input class="form-control" type="text" placeholder="Amount you want to deposit" id="addDeposit">
+                          <br>
+                          <button id="Deposit" class="btn btn-success">Deposit</button>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="dep">
+                        <h5>Withdraw</h5>
+                        <input class="form-control" type="text" placeholder="Amount you want to withdraw" id="addWithdraw">
+                        <br>
+                        <button id="withdraw" class="btn btn-success">
+                            Withdraw
+                        </button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+      </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        //Enter click handelar....
+        const enter = document.getElementById('login');
+        enter.addEventListener('click', function(){
+           var select = document.getElementById('bank');
+           select.style.display='none';
+           var show = document.getElementById('transection');
+           show.style.display ='block';
+        });
+        //common function
+        function updateSpanText(id, addNumber){
+          var current = document.getElementById(id).innerText;
+          var currentNumber = parseFloat(current);
+          var totalAmount = currentNumber + addNumber;
+          document.getElementById(id).innerText = totalAmount;
+        }
+        function getInputNumber(id){
+          var amount = document.getElementById(id).value;
+            var amountNumber = parseFloat(amount);
+            return amountNumber;
+        }
+        //deposit handelar
+        const addDeposit = document.getElementById('Deposit');
+        addDeposit.addEventListener('click', function(){
+
+            var addDepositNumber = getInputNumber('addDeposit');
+
+            updateSpanText('currentDeposit', addDepositNumber);
+            updateSpanText('currentBalance', addDepositNumber);
+
+           document.getElementById('addDeposit').value = '';
+        });
+
+        //withdraw handelar 
+        const withdraw = document.getElementById('withdraw');
+        withdraw.addEventListener('click', function(){
+          var addwithdrawNumber = getInputNumber('addWithdraw');
+
+          updateSpanText('currentWithdraw', addwithdrawNumber);
+          updateSpanText('currentBalance', -1 * addwithdrawNumber);
+
+          document.getElementById('addWithdraw').value = '';
+        })
+
+        
+    </script>
+  </body>
+</html>
